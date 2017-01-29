@@ -1,0 +1,1 @@
+Изучаем принцип TDD по книге Obey the Testing Goat!
