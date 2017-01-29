@@ -139,3 +139,6 @@ $RECYCLE.BIN/
 *.lnk
 
 .idea
+__pycache__
+*.pyc
+db.sqlite3
