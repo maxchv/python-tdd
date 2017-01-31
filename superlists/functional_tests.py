@@ -1,33 +1,46 @@
 from selenium import webdriver
+import unittest
 
-browser = webdriver.Firefox(executable_path='e:\qa\webdrivers\geckodriver.exe')
 
-# Edith has heard about a copy new online to-do app.
-# She goes to check out its homepage
-browser.get('http://localhost:8000')
+class NewVisitorTest(unittest.TestCase):
+    webdriver_path = 'e:\qa\webdrivers\geckodriver.exe'
 
-# She notice the page title a heard mention to-do list
-assert 'To-Do' in browser.title
+    def setUp(self):
+        self.browser = webdriver.Firefox(executable_path=self.webdriver_path)
+        self.browser.implicitly_wait(3)
 
-# Sh is invited to enter a to-do item straight away
+    def tearDown(self):
+        self.browser.quit()
 
-# She types 'Buy peacock feathers" into a text box
-# (Edith's hobby is tying fly-finishing lures)
+    def test_can_start_a_list_and_retrive_it_later(self):
+        # Edith has heard about a copy new online to-do app.
+        # She goes to check out its homepage
+        self.browser.get('http://localhost:8000')
 
-# When she hits enter, the page updates, and now the page lists
-# "1: Buy peacock feathers" as an item in a to-do list
+        # She notice the page title a heard mention to-do list
+        self.assertIn('To-Do', self.browser.title)
+        self.fail("Finish the test")
 
-# There is still a text box inviting her to add another item. She
-# enters "Use peacock feathers to make a fly" (Edith is very methodical)
+        # Sh is invited to enter a to-do item straight away
 
-# The page updates again, and now shows both items on her list
+        # She types 'Buy peacock feathers" into a text box
+        # (Edith's hobby is tying fly-finishing lures)
 
-# Edith wonders whether the site will remember her list. Then she sees
-# that the site has generated a unique URL for her -- there is some
-# explanatory text to that effect.
+        # When she hits enter, the page updates, and now the page lists
+        # "1: Buy peacock feathers" as an item in a to-do list
 
-# She visits that URL - her to-do list is still there.
+        # There is still a text box inviting her to add another item. She
+        # enters "Use peacock feathers to make a fly" (Edith is very methodical)
 
-# Satisfied, she goes back to sleep
+        # The page updates again, and now shows both items on her list
 
-browser.quit()
+        # Edith wonders whether the site will remember her list. Then she sees
+        # that the site has generated a unique URL for her -- there is some
+        # explanatory text to that effect.
+
+        # She visits that URL - her to-do list is still there.
+
+        # Satisfied, she goes back to sleep
+
+if __name__ == "__main__":
+    unittest.main(warnings='ignore')
