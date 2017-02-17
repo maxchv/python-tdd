@@ -5,7 +5,8 @@ from selenium.webdriver.common.keys import Keys
 
 
 class NewVisitorTest(unittest.TestCase):
-    webdriver_path = 'e:\qa\webdrivers\geckodriver.exe'
+    #webdriver_path = 'e:\qa\webdrivers\geckodriver.exe'
+    webdriver_path = r'e:\geckodriver.exe'
 
     def setUp(self):
         self.browser = webdriver.Firefox(executable_path=self.webdriver_path)
