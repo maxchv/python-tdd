@@ -1,14 +1,12 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Item
 
 
 def home_page(request):
-    new_item = request.POST.get('item_text', '')
     if request.method == 'POST':
-        item = Item.objects.create(text=new_item)
+        item = Item.objects.create(text=request.POST.get('item_text', ''))
         item.save()
+        return redirect('/')
 
-    return render(request, 'home.html', {
-        'new_item_text': new_item,
-    })
+    return render(request, 'home.html')
