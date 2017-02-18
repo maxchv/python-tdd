@@ -4,10 +4,11 @@ from .models import Item
 
 
 def home_page(request):
-    item = Item()
-    item.text = request.POST.get('item_text', '')
-    item.save()
+    new_item = request.POST.get('item_text', '')
+    if request.method == 'POST':
+        item = Item.objects.create(text=new_item)
+        item.save()
 
     return render(request, 'home.html', {
-        'new_item_text': request.POST.get('item_text')
+        'new_item_text': new_item,
     })
